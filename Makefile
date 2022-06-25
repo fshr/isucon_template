@@ -56,7 +56,7 @@ nginx: ## Update nginx unit
 ##@ Exec tools
 .PHONY: exec-alp
 exec-alp: alp ## Execute alp
-	cat /var/log/nginx/access.log | alp ltsv -m "/api/courses/.+,/api/announcements/.+" -f "Status!=503"
+	cat /var/log/nginx/access.log | alp ltsv -m "/api/courses/.+,/api/announcements/.+" 
 
 .PHONY: exec-mysqltuner
 exec-mysqltuner: ## Execute mysqltuner
