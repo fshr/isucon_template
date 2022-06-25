@@ -4,4 +4,4 @@ cd /home/isucon/webapp/go/
 
 make all
 
-systemctl restart isucholar.go
+sudo systemctl restart isucholar.go

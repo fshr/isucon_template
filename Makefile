@@ -44,7 +44,7 @@ mysql: clear-slow-logs ## Update mysql unit
 	sudo systemctl restart mysql
 
 .PHONY: isucholar
-isumo: ## Update isumo unit
+isucholar: ## Update isumo unit
 	/home/isucon/isucon_template/restart.sh
 
 .PHONY: nginx
@@ -64,7 +64,7 @@ exec-mysqltuner: ## Execute mysqltuner
 
 .PHONY: bench
 bench: ## Execute bench
-	home/isucon/isucon_template/bench.sh
+	/home/isucon/isucon_template/bench.sh
 
 .PHONY: exec-percona
 exec-percona: ## Execute pt-query-digest
