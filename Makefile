@@ -49,14 +49,14 @@ isucholar: ## Update isumo unit
 
 .PHONY: nginx
 nginx: ## Update nginx unit
-	sudo cp home/isucon/isucon_template/conf/nginx/isuumo.conf /etc/nginx/sites-enabled/isuumo.conf
+	sudo cp /home/isucon/isucon_template/nginx.conf /etc/nginx/nginx.conf
 	sudo nginx -t
 	sudo systemctl restart nginx
 
 ##@ Exec tools
 .PHONY: exec-alp
 exec-alp: alp ## Execute alp
-	cat /var/log/nginx/access.log | alp ltsv -m "/api/estate/\d+,/api/estate/req_doc/\d+,/api/chair/\d+,/api/chair/buy/\d+,/api/recommended_estate/.+" -f "Status!=503"
+	cat /var/log/nginx/access.log | alp ltsv -m "/api/courses/.+,/api/announcements/.+" -f "Status!=503"
 
 .PHONY: exec-mysqltuner
 exec-mysqltuner: ## Execute mysqltuner
