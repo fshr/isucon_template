@@ -53,6 +53,25 @@ $ chmod +r /var/log/mysql/slow.log
 $ make exec-percona
 ```
 
+# Go Profiler
+[pprof](https://pkg.go.dev/net/http/pprof) を使用する
+
+## コードを変更する
+$ vi main.go
+```
+import _ "net/http/pprof"
+...
+go func() {
+	log.Println(http.ListenAndServe("localhost:6060", nil))
+}()
+...
+```
+
+## 実行結果を確認する
+
+// テストを実行中に下記を実行する
+go tool pprof http://x.x.x.x:6060/debug/pprof/profile?seconds=30
+
 # MySQL Replication
 
 [参考: MySQL レプリケーション遅延と不整合を体験してみよう](https://qiita.com/suzuki_sh/items/8607ec26c91e013f65f6)
