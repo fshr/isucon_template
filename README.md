@@ -74,6 +74,11 @@ go func() {
 $ go tool pprof -http=":8080" "http://x.x.x.x:6060/debug/pprof/profile?seconds=60"
 ```
 
+// 実行後のに出力される結果ファイルを指定して確認する場合は、下記を実行する
+```
+$ go tool pprof -http=":8080" ~/Downloads/pprof.isuconquest.samples.cpu.002.pb.gz
+```
+
 # MySQL Replication
 
 [参考: MySQL レプリケーション遅延と不整合を体験してみよう](https://qiita.com/suzuki_sh/items/8607ec26c91e013f65f6)
