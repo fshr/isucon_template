@@ -70,7 +70,7 @@ go func() {
 ## 実行結果を確認する
 
 // テストを実行中に下記を実行する
-go tool pprof http://x.x.x.x:6060/debug/pprof/profile?seconds=30
+go tool pprof -http=":8080" "http://x.x.x.x:6060/debug/pprof/profile?seconds=60"
 
 # MySQL Replication
 
