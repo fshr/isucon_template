@@ -141,3 +141,8 @@ $ mysql -u root -h 127.0.0.1 -P 3306 -e "SHOW SLAVE STATUS\G" | grep Running:
              Slave_IO_Running: Yes
             Slave_SQL_Running: Yes
 ```
+
+## インデックスを貼る
+```
+ALTER TABLE `user_present_all_received_history` ADD INDEX idx_user_present_all_received_history(user_id, present_all_id);
+```
