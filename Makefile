@@ -35,7 +35,10 @@ phpmyadmin: ## Install phpmyadmin if necessary
 
 .PHONY: percona
 percona: ## Install percona if necessary
-	sudo apt-get install percona-toolkit -y
+	# sudo apt-get install percona-toolkit -y
+	wget percona.com/get/pt-query-digest
+	chmod +x pt-query-digest
+	sudo mv pt-query-digest /usr/local/bin/
 
 ##@ Update systemd-units
 .PHONY: mysql
