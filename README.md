@@ -1,6 +1,5 @@
 # Getting started
 
-
 ## ツールのインストール
 ```
 $ make install_all
@@ -54,10 +53,15 @@ $ chmod +r /var/log/mysql/slow.log
 $ make exec-percona
 ```
 
-# Go Profiler
+## ディレクトリセットアップ
+```
+$ ./setup.sh
+```
+
+## Go Profiler
 [pprof](https://pkg.go.dev/net/http/pprof) を使用する
 
-## コードを変更する
+### コードを変更する
 $ vi main.go
 ```
 import _ "net/http/pprof"
@@ -80,10 +84,10 @@ $ go tool pprof -http=":8080" "http://x.x.x.x:6060/debug/pprof/profile?seconds=6
 $ go tool pprof -http=":8080" ~/Downloads/pprof.isuconquest.samples.cpu.002.pb.gz
 ```
 
-# 調査手順
+## 調査手順
 1. ベンチ実行時に下記の情報を確認する: pprof, slow log, performance info (top, dstat)
 
-# MySQL Replication
+## MySQL Replication
 
 [参考: MySQL レプリケーション遅延と不整合を体験してみよう](https://qiita.com/suzuki_sh/items/8607ec26c91e013f65f6)
 
