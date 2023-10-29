@@ -1,7 +1,8 @@
 # Getting started
 
+
+## ツールのインストール
 ```
-# install tools
 $ make install_all
 
 # update nginx.conf
