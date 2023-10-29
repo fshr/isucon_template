@@ -96,11 +96,12 @@ $ vi /etc/mysql/my.cnf
 ...
 
 # Master 側に replication ユーザを作成する
+# X.X.X.X は Slave の IP
 $ mysql -u root -p
 ...
-    Create user ‘repl’@’192.168.2.46’ identified by ‘replpwd’;
-    Grant replication slave on *.* to ‘repl’@’192.168.2.46’;
-    GRANT ALL PRIVILEGES ON *.* TO ‘repl’@’192.168.2.46’;
+    Create user ‘repl’@’X.X.X.X’ identified by ‘replpwd’;
+    Grant replication slave on *.* to ‘repl’@’X.X.X.X’;
+    GRANT ALL PRIVILEGES ON *.* TO ‘repl’@’X.X.X.X’;
 ...
 
 # Master 側でリモートアクセスを許可する
@@ -113,7 +114,7 @@ $ vi /etc/mysql/mysql.conf.d/mysqld.cnf
 $ sudo systemctl restart mysql
 
 # Master の binlog の状態を確認する
-$ $ mysql -u root -h 127.0.0.1 -P 13306 -e "SHOW MASTER STATUS\G"
+$ $ mysql -u root -h 127.0.0.1 -P 3306 -e "SHOW MASTER STATUS\G"
 
 # Slave 側で auto.cnf を削除する
 $ rm /var/lib/mysql/auto.cnf
@@ -125,10 +126,10 @@ $ sudo systemctl restart mysql
 $ mysql -u root -h 127.0.0.1 -P 23306
 ...
 $ CHANGE MASTER TO
-    MASTER_HOST='db-master',
+    MASTER_HOST=''Y.Y.Y.Y',
     MASTER_PORT=3306,
     MASTER_USER='root',
-    MASTER_PASSWORD='',
+    MASTER_PASSWORD='AAAAAAAA',
     MASTER_LOG_FILE='<MasterLogFile>', # Master の binlog の状態確認で確認したもの
     MASTER_LOG_POS=<MasterLogPosition>; # Master の binlog の状態確認で確認したもの
 ...
@@ -136,7 +137,7 @@ $ START SLAVE;
 $ SHOW SLAVE STATUS\G
 
 # Slave の Replication を確認する
-$ mysql -u root -h 127.0.0.1 -P 23306 -e "SHOW SLAVE STATUS\G" | grep Running:
+$ mysql -u root -h 127.0.0.1 -P 3306 -e "SHOW SLAVE STATUS\G" | grep Running:
              Slave_IO_Running: Yes
             Slave_SQL_Running: Yes
 ```
