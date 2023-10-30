@@ -4,12 +4,11 @@ set -e
 # config
 users=() # e.g. ('XXXX' 'YYYY' 'ZZZZ')
 target_dir='XXX' # e.g. isucon12-final
-target_dir='XXX' # e.g. isucon12-final
 home_dir='/home/isucon/'
 ssh_key="github"
 git_origin_url="XXX"
 
-# varidation
+# validation
 if [[ ${#users[@]} -eq 0 || "${target_dir}" = 'XXX' || ${git_origin_url} = 'XXX' ]]
 then
     echo "unset parameters found"
