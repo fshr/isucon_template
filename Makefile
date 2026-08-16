@@ -24,7 +24,9 @@ mysqltuner: ## Install mysqltuner if necessary
 .PHONY: alp
 alp: ## Install alp if necessary
 	if ! which alp >/dev/null; then \
-		env GOFLAGS= go install github.com/tkuchiki/alp/cli/alp@latest; \
+		curl -L https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.tar.gz -O; \
+		tar xf alp_linux_amd64.tar.gz; \
+		mv alp /usr/local/bin/; \
 	fi
 
 .PHONY: phpmyadmin
