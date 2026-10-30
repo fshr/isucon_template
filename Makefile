@@ -4,8 +4,8 @@ help: ## Display this help.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
 ##@ Tools
-.PHONY: isntall_all
-install_all: fzf mysqltuner alp phpmyadmin percona ## Install all if necessary
+.PHONY: install_all
+install_all: fzf mysqltuner alp phpmyadmin percona codex ## Install all if necessary
 
 
 .PHONY: fzf
@@ -41,6 +41,15 @@ percona: ## Install percona if necessary
 	wget percona.com/get/pt-query-digest
 	chmod +x pt-query-digest
 	sudo mv pt-query-digest /usr/local/bin/
+
+.PHONY: codex
+codex: ## Install codex if necessary
+	if ! which codex >/dev/null; then \
+		curl -L https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz -O; \
+		tar xf codex-x86_64-unknown-linux-musl.tar.gz; \
+		sudo mv codex-x86_64-unknown-linux-musl /usr/local/bin/codex; \
+		rm codex-x86_64-unknown-linux-musl.tar.gz; \
+	fi
 
 ##@ Update systemd-units
 .PHONY: mysql
