@@ -1,0 +1,25 @@
+# ISUCON 2026 server inventory — fill in actual values locally.
+# Do NOT commit this file. SSH_KEY is a PATH to a private key, not key contents.
+# Keep private keys outside the repository. Verify SSH host fingerprints.
+# server1 is active initially; server2 and server3 are standby.
+
+[server1]
+ROLE=primary
+HOST=REPLACE_WITH_SERVER_1_IP
+SSH_USER=REPLACE_WITH_SSH_USERNAME
+SSH_PORT=22
+SSH_KEY=/path/outside/repository/to/server1_private_key
+
+[server2]
+ROLE=standby
+HOST=REPLACE_WITH_SERVER_2_IP
+SSH_USER=REPLACE_WITH_SSH_USERNAME
+SSH_PORT=22
+SSH_KEY=/path/outside/repository/to/server2_private_key
+
+[server3]
+ROLE=standby
+HOST=REPLACE_WITH_SERVER_3_IP
+SSH_USER=REPLACE_WITH_SSH_USERNAME
+SSH_PORT=22
+SSH_KEY=/path/outside/repository/to/server3_private_key
